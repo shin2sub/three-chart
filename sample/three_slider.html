@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        canvas {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container"></div>
+    <input type="button" class="cameraBtn" value="camera" />
+    <input type="button" class="lightBtn" value="light" />
+
+    <script src="../external/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../external/threeJS/three.min.js"></script>
+    <script src="../external/threeJS/helvetiker_font/helvetiker_regular.typeface.js"></script>
+    <script src="../external/threeJS/threex.domevents.js"></script>
+    <script src="../lib/threeSlider.js"></script>
+
+    <script>
+
+        var slide = [
+            '/img/slide1.PNG', '../img/slide2.PNG', '../img/slide3.PNG',
+            '../img/slide4.PNG', '../img/slide5.PNG', '../img/slide6.PNG',
+            '../img/slide7.PNG', '../img/slide8.PNG', '../img/slide9.PNG',
+            '../img/slide10.PNG', '../img/slide11.PNG', '../img/slide12.PNG',
+            '../img/slide13.PNG'
+        ];
+
+        var three = three.init($('.container'), slide);
+
+        $('.lightBtn').click(function () {
+
+            three.light.color.setHex(getRandomColor());
+        });
+
+        var cameraBtnCheck = 'near';
+
+        $('.cameraBtn').click(function () {
+
+            if (cameraBtnCheck == 'near') {
+
+                three.camera.position.z = 100;
+                cameraBtnCheck = 'far';
+
+            } else {
+
+                three.camera.position.z = 50;
+                cameraBtnCheck = 'near';
+            }
+        });
+        
+        var colorNum = 0;
+
+        function getRandomColor() {
+
+            var color = ['0xff0000', '0xffff00', '0xff00ff', '0x0000ff', '0x00ff00', '0xffffff']
+
+            colorNum ++;
+            
+            if (colorNum == color.length) {
+
+                colorNum = 0;
+            }
+            
+            return color[colorNum];
+        }
+
+        var textGeometry = new THREE.TextGeometry('THREE.JS',{
+            size : 3,
+            height : 1,
+            curveSegments: 1,
+            bevelThickness: 2,
+            bevelSize: 0.1,
+            bevelEnabled: true
+        });
+
+        textGeometry.computeBoundingBox();
+
+        var centerOffset = textGeometry.boundingBox.max.x;
+
+        var textMaterial1 = new THREE.MeshLambertMaterial({ 
+            color : '#b4b4b5'
+        });
+
+        var textMesh = new THREE.Mesh(textGeometry, textMaterial1);
+        
+        textMesh.position.x = -9;
+        textMesh.position.y = 6;
+        textMesh.position.z = 13;
+
+        three.group.add(textMesh);
+        
+        three.domEvents.addEventListener(textMesh, 'click', function(event){
+            
+            console.log('you clicked on mesh', textMesh);
+
+        }, false)
+
+    </script>
+</body>
+
+</html>

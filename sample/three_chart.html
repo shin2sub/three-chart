@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3D Chart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: black;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container"></div>
+
+    <script src="../external/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../external/threeJS/three.min.js"></script>
+    <script src="../external/threeJS/helvetiker_font/helvetiker_regular.typeface.js"></script>
+    <script src="../external/threeJS/threex.domevents.js"></script>
+    <script src='../external/underscore/underscore-min.js'></script>
+    <script src="../lib/threeChart.js"></script>
+
+    <script type="text/javascript">
+       
+     
+        var options = {
+            xAxis : 'date',
+            series : {
+                s1 : 'IE8',
+                s2 : 'IE9',
+                s3 : 'IE10',
+                s4 : 'IE11',
+                s5 : 'Firefox',
+                s6 : 'Opera',
+                s7 : 'Chrome'
+            }
+        };
+        
+        var styles = {
+            faceX: "700",
+            faceY: "400",
+            faceZ: "400",
+            linecolor: [
+                "#fa0b27", "#fa0bc5", "#0b6afa", "#9d0bfa", 
+                "#0bb4fa", "#0bfae1", "#0bfa76"
+            ]
+        };
+
+        var data = [{
+            date: '1000',
+            IE8: 1346,
+            IE9: 1143,
+            IE10: 1041,
+            IE11: 1060,
+            Firefox: 603,
+            Opera: 351,
+            Chrome: 314
+        }, {
+            date: '2000',
+            IE8: 2687,
+            IE9: 1728,
+            IE10: 1842,
+            IE11: 2204,
+            Firefox: 1110,
+            Opera: 682,
+            Chrome: 570
+        }, {
+            date: '3000',
+            IE8: 4273,
+            IE9: 2245,
+            IE10: 2856,
+            IE11: 3269,
+            Firefox: 1567,
+            Opera: 940,
+            Chrome: 838
+        }, {
+            date: '4000',
+            IE8: 5569,
+            IE9: 2974,
+            IE10: 3819,
+            IE11: 4418,
+            Firefox: 2278,
+            Opera: 1346,
+            Chrome: 1255
+        }, {
+            date: '5000',
+            IE8: 7024,
+            IE9: 4690,
+            IE10: 5415,
+            IE11: 5235,
+            Firefox: 2857,
+            Opera: 1534,
+            Chrome: 1364
+        }, {
+            date: '6000',
+            IE8: 8518,
+            IE9: 7266,
+            IE10: 5581,
+            IE11: 6539,
+            Firefox: 3308,
+            Opera: 1830,
+            Chrome: 1622
+        }, {
+            date: '7000',
+            IE8: 9594,
+            IE9: 8492,
+            IE10: 7027,
+            IE11: 7969,
+            Firefox: 3909,
+            Opera: 2337,
+            Chrome: 1864
+        }, {
+            date: '8000',
+            IE8: 10999,
+            IE9: 9871,
+            IE10: 7402,
+            IE11: 9641,
+            Firefox: 4314,
+            Opera: 2435,
+            Chrome: 2387
+        }, {
+            date: '9000',
+            IE8: 12553,
+            IE9: 8070,
+            IE10: 8670,
+            IE11: 10889,
+            Firefox: 4864,
+            Opera: 2750,
+            Chrome: 2403
+        }, {
+            date: '10000',
+            IE8: 13368,
+            IE9: 8780,
+            IE10: 10326,
+            IE11: 11876,
+            Firefox: 5521,
+            Opera: 3088,
+            Chrome: 2646
+        }];
+
+        var sample = yisub.three.init($('.container'), styles, options, data);
+
+    </script>
+ 
+</body>
+
+</html>
